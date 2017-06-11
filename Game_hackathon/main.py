@@ -1,4 +1,8 @@
 import pygame
+from Member.Character import Character
+from Member.map import Map
+from Member.Dest import Dest
+from Member.Shoot import Shoot
 
 class G4E:
     def __init__(self):
@@ -36,33 +40,6 @@ class G4E:
             pass
         return dx,dy
 
-
-
-class Map:
-    def __init__(self, x, y):
-        self.width = x
-        self.height = y
-
-class Character:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def move(self, dx, dy):
-        self.x += dx
-        self.y += dy
-
-
-
-class Dest:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-class Shoot:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
 
 g4e = G4E()
 g4e.map = Map(10, 5)
