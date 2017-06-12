@@ -50,6 +50,7 @@ pixel = 64
 
 g4e.character.image = pygame.image.load("images/pusher.png")
 g4e.map.image = pygame.image.load("images/wall.png")
+g4e.shoot.image = pygame.image.load("images/0.png")
 for dest in g4e.dests:
     dest.image = pygame.image.load("images/dest.png")
 
@@ -57,7 +58,7 @@ for dest in g4e.dests:
 pygame.init()
 screen = pygame.display.set_mode((800,600))
 done = False
-
+counter = 0
 
 while not done:
     for event in pygame.event.get():
@@ -66,5 +67,6 @@ while not done:
         if event.type == pygame.KEYDOWN:
             dx, dy = g4e.handle_input(event)
             g4e.character.move(dx, dy)
+
     g4e.draw(screen)
     pygame.display.flip()
