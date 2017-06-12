@@ -45,6 +45,7 @@ g4e = G4E()
 g4e.map = Map(10, 5)
 g4e.character = Character(1, 1)
 g4e.dests = [Dest(0,0),Dest(0,1),Dest(0,2),Dest(0,3),Dest(0,4)]
+g4e.shoot = Shoot(1, 100)
 pixel = 64
 
 g4e.character.image = pygame.image.load("images/pusher.png")
@@ -54,7 +55,7 @@ for dest in g4e.dests:
 
 
 pygame.init()
-screen = pygame.display.set_mode((640,320))
+screen = pygame.display.set_mode((800,600))
 done = False
 
 
