@@ -12,7 +12,9 @@ class G4E:
                 screen.blit(self.map.image, (x * pixel, y * pixel))
         for self.dest in self.dests:
             self.draw_image_center(self.dest, screen)
-            self.draw_image_center(self.character,screen)
+        self.draw_image_center(self.character,screen)
+        self.draw_image_center(self.creep,screen)
+        self.draw_image_center(self.shoot,screen)
 
 
     def draw_image_center(self, object,screen):
@@ -21,10 +23,13 @@ class G4E:
         screen.blit(object.image,(w,h))
 
     def in_map(self,dx ,dy):
-        if 0 <= self.character.x + dx < self.map.width and 0 <= self.character.y + dy < self.map.height:
+        if 1 <= self.character.x + dx < self.map.width and 0 <= self.character.y + dy < self.map.height:
             return True
         return False
 
+    def att(self, dx, dy):
+        if self.shoot.x + dx == self.creep.x and self.shoot.y + dy == self.creep.y:
+            self.creep
 
     def handle_input(self, event):
         dx = 0
@@ -41,12 +46,6 @@ class G4E:
         elif event.key == pygame.K_UP:
             dy = -1
             self.character.image = pygame.image.load("images/pusher_up.png")
-        elif event.key == pygame.K_SPACE:
-            self.shoots.counter += 1
-            if self.shoots.counter >= 10:
-                self.shoots.move(1, 0)
-                self.shoots.counter = 0
-            self.shoots.draw()
         else:
             pass
 

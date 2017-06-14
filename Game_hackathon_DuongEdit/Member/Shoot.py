@@ -1,8 +1,13 @@
 import pygame
+
 class Shoot:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+    def levelDamage(self, level, damage):
+        self.level = level
+        self.damage = damage
 
     def move(self, dx, dy):
         self.x += dx
@@ -10,7 +15,7 @@ class Shoot:
 
     def draw_shoot(self, dx, dy):
         self.shoot.move(dx, dy)
-        # g4e.draw_image_center(g4e.shoot, screen)
+        # self.shoot.image = pygame.image.load("images/box.png")
 
     def moveShoot(self, dx, dy):
 
