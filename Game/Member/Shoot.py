@@ -9,8 +9,13 @@ class Shoot:
         self.x += dx
         self.y += dy
 
-    def draw_shoot(self, dx, dy):
-        self.shoot.move(dx, dy)
+    def draw_shoot(self, shoot):
+        for self.shoot in shoot:
+            self.shoot.move(1, 0)
+            if self.shoot.x > self.map.width:
+                self.shoots.append(self.shoot)
+                self.shooted.remove(self.shoot)
+
 
 
         # if dx > 0 and dy == 0:

@@ -13,12 +13,11 @@ class G4E:
         for self.dest in self.dests:
             self.draw_image_center(self.dest, screen)
         self.draw_image_center(self.character, screen)
-        if len(self.creeps) != 0:
-            for self.creep in self.creeps:
-                self.draw_image_center(self.creep, screen)
-        if len(self.shooted) != 0:
-            for self.shoted in self.shooted:
-                self.draw_image_center(self.shoted, screen)
+        self.draw_image_center(self.creep, screen)
+        # if len(self.shooted) != 0:
+        #     for self.shoted in self.shooted:
+        #         self.draw_image_center(self.shoted, screen)
+
 
 
     def draw_image_center(self, object,screen):
@@ -36,16 +35,16 @@ class G4E:
         dy = 0
         if event.key == pygame.K_RIGHT:
             dx = 1
-
+            self.character.image = pygame.image.load("images/pusher_right.png")
         elif event.key == pygame.K_LEFT:
             dx = -1
-
+            self.character.image = pygame.image.load("images/pusher_left.png")
         elif event.key == pygame.K_DOWN:
             dy = 1
-
+            self.character.image = pygame.image.load("images/pusher.png")
         elif event.key == pygame.K_UP:
             dy = -1
-
+            self.character.image = pygame.image.load("images/pusher_up.png")
         else:
             pass
 
