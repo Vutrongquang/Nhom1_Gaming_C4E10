@@ -19,9 +19,9 @@ class G4E:
         if len(self.shooted) != 0:
             for self.shoted in self.shooted:
                 self.draw_image_center(self.shoted, screen)
-        if len(self.creep_die)  0:
-            for self.creepdie in self.creep_die:
-                self.draw_image_center(self.creepdie, screen)
+        for self.creepdie in len(self.creep_die):
+            self.draw_image_center(self.creepdie, screen)
+
 
 
     def draw_image_center(self, object,screen):

@@ -8,6 +8,7 @@ from Member.Shoot import Shoot
 from Member.Character import Character
 from Member.Creep import Creep
 from Member.CreepDie import CreepDie
+# from Member.ViewCharacter import ViewCharacter
 
 # Khoi tao cac doi tuong
 g4e = G4E()
@@ -34,7 +35,7 @@ pixel = 64
 # Xu li phan hinh anh co ban
 for g4e.creep in g4e.creeps:
     g4e.creep.image = pygame.image.load("images/creep.png")
-g4e.character.image = pygame.image.load("images/character.png")
+# g4e.character.image = pygame.image.load("images/character.png")
 g4e.map.image = pygame.image.load("images/Wall_Black.png")
 for dest in g4e.dests:
     dest.image = pygame.image.load("images/dest.png")
@@ -43,7 +44,7 @@ for g4e.shoot in g4e.shoots:
 
 
 pygame.init()
-screen = pygame.display.set_mode((640,320))
+screen = pygame.display.set_mode((800,600))
 done = False
 
 g4e.creep_die_animation = [
@@ -56,6 +57,8 @@ g4e.creep_die_animation = [
     pygame.image.load("images/6.png")
 ]
 
+
+# g4e.view_character = ViewCharacter(g4e.character_animation, screen)
 g4e.creep_die = CreepDie(g4e.creep_die_animation, screen)
 
 creep_speed = 0
@@ -81,6 +84,7 @@ while not done:
                 (g4e.shoots[len(g4e.shoots)-1].x, g4e.shoots[len(g4e.shoots)-1].y) = (g4e.character.x + 1, g4e.character.y )
                 g4e.shooted.append(g4e.shoots[len(g4e.shoots)-1])
                 g4e.shoots.pop()
+                # g4e.view_character.draw(g4e.character.x, g4e.character.y)
 
     creep_speed += 1
     if k <= 10:

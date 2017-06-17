@@ -44,11 +44,11 @@ for i in range(50):
 g4e.opp_top = []
 g4e.oppingame_top = []
 for i in range(50):
-    g4e.opp_top.append(Opp(random.randint(6, 10), -1))
+    g4e.opp_top.append(Opp(random.randint(7, 10), -1))
 g4e.opp_bottom = []
 g4e.oppingame_bottom = []
 for i in range(50):
-    g4e.opp_bottom.append(Opp(random.randint(6, 10), 19))
+    g4e.opp_bottom.append(Opp(random.randint(7, 10), 19))
 
 
 
@@ -117,6 +117,34 @@ while not done:
                 else:
                     pass
 
+    opp_right_speed += 1
+    opp_left_speed += 1
+    opp_top_speed += 1
+    opp_bottom_speed += 1
+    while opp_right_speed > random.randint(45,60):
+        g4e.oppingame_right.append(g4e.opp_right[random.randint(1, len(g4e.opp_right)-1)])
+        for g4e.opp in g4e.oppingame_right:
+            g4e.opp.move(-1, 0)
+        opp_right_speed = 0
+
+    while opp_left_speed > random.randint(45,60):
+        g4e.oppingame_left.append(g4e.opp_left[random.randint(1,len(g4e.opp_left)-1)])
+        for g4e.opp in g4e.oppingame_left:
+            g4e.opp.move(1, 0)
+        opp_left_speed = 0
+
+    while opp_top_speed > random.randint(45,60):
+        g4e.oppingame_top.append(g4e.opp_top[random.randint(1,len(g4e.opp_top)-1)])
+        for g4e.opp in g4e.oppingame_top:
+            g4e.opp.move(0, 1)
+        opp_top_speed = 0
+
+    while opp_bottom_speed > random.randint(45,60):
+        g4e.oppingame_bottom.append(g4e.opp_bottom[random.randint(1,len(g4e.opp_bottom)-1)])
+        for g4e.opp in g4e.oppingame_bottom:
+            g4e.opp.move(0, -1)
+        opp_bottom_speed = 0
+
     shoot_speed += 1
     while shoot_speed >5:
         for g4e.shoot in g4e.shoot_right:
@@ -145,33 +173,41 @@ while not done:
 
         shoot_speed = 0
 
-    opp_right_speed += 1
-    opp_left_speed += 1
-    opp_top_speed += 1
-    opp_bottom_speed += 1
-    while opp_right_speed > random.randint(45,60):
-        g4e.oppingame_right.append(g4e.opp_right[random.randint(1, len(g4e.opp_right)-1)])
+    for g4e.shoot in g4e.shoot_right:
         for g4e.opp in g4e.oppingame_right:
-            g4e.opp.move(-1, 0)
-        opp_right_speed = 0
+            if g4e.shoot.x == g4e.opp.x and g4e.shoot.y == g4e.opp.y:
+                g4e.shoots.append(g4e.shoot)
+                g4e.shoot_right.remove(g4e.shoot)
+                g4e.opp.x = 19
+                g4e.opp.y = random.randint(6, 9)
+                g4e.oppingame_right.remove(g4e.opp)
 
-    while opp_left_speed > random.randint(45,60):
-        g4e.oppingame_left.append(g4e.opp_left[random.randint(1,len(g4e.opp_left)-1)])
+    for g4e.shoot in g4e.shoot_left:
         for g4e.opp in g4e.oppingame_left:
-            g4e.opp.move(1, 0)
-        opp_left_speed = 0
+            if g4e.shoot.x == g4e.opp.x and g4e.shoot.y == g4e.opp.y:
+                g4e.shoots.append(g4e.shoot)
+                g4e.shoot_left.remove(g4e.shoot)
+                g4e.opp.x = -1
+                g4e.opp.y = random.randint(6, 9)
+                g4e.oppingame_left.remove(g4e.opp)
 
-    while opp_top_speed > random.randint(45,60):
-        g4e.oppingame_top.append(g4e.opp_top[random.randint(1,len(g4e.opp_top)-1)])
+    for g4e.shoot in g4e.shoot_up:
         for g4e.opp in g4e.oppingame_top:
-            g4e.opp.move(0, 1)
-        opp_top_speed = 0
+            if g4e.shoot.x == g4e.opp.x and g4e.shoot.y == g4e.opp.y:
+                g4e.shoots.append(g4e.shoot)
+                g4e.shoot_up.remove(g4e.shoot)
+                g4e.opp.x = random.randint(7, 10)
+                g4e.opp.y = -1
+                g4e.oppingame_top.remove(g4e.opp)
 
-    while opp_bottom_speed > random.randint(45,60):
-        g4e.oppingame_bottom.append(g4e.opp_bottom[random.randint(1,len(g4e.opp_bottom)-1)])
+    for g4e.shoot in g4e.shoot_down:
         for g4e.opp in g4e.oppingame_bottom:
-            g4e.opp.move(0, -1)
-        opp_bottom_speed = 0
+            if g4e.shoot.x == g4e.opp.x and g4e.shoot.y == g4e.opp.y:
+                g4e.shoots.append(g4e.shoot)
+                g4e.shoot_down.remove(g4e.shoot)
+                g4e.opp.x = random.randint(7, 10)
+                g4e.opp.y = 19
+                g4e.oppingame_bottom.remove(g4e.opp)
 
     g4e.draw_map(screen)
     pygame.display.flip()
