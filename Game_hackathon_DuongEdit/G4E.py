@@ -13,6 +13,8 @@ class G4E:
         for self.dest in self.dests:
             self.draw_image_center(self.dest, screen)
             self.draw_image_center(self.character,screen)
+        for self.creep in self.creeps:
+            self.draw_image_center(self.creep, screen)
 
 
     def draw_image_center(self, object,screen):
