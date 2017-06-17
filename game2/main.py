@@ -209,5 +209,33 @@ while not done:
                 g4e.opp.y = 19
                 g4e.oppingame_bottom.remove(g4e.opp)
 
+    for g4e.wall in g4e.wall_right:
+        for g4e.opp in g4e.oppingame_right:
+            if g4e.wall.x == g4e.opp.x and g4e.wall.y == g4e.opp.y:
+                g4e.oppingame_right.remove(g4e.opp)
+                g4e.opp.x = -1
+                g4e.opp.y = random.randint(7, 10)
+
+    for g4e.wall in g4e.wall_left:
+        for g4e.opp in g4e.oppingame_left:
+            if g4e.wall.x == g4e.opp.x and g4e.wall.y == g4e.opp.y:
+                g4e.oppingame_left.remove(g4e.opp)
+                g4e.opp.x = 25
+                g4e.opp.y = random.randint(7, 10)
+
+    for g4e.wall in g4e.wall_top:
+        for g4e.opp in g4e.oppingame_top:
+            if g4e.wall.x == g4e.opp.x and g4e.wall.y == g4e.opp.y:
+                g4e.oppingame_top.remove(g4e.opp)
+                g4e.opp.x = random.randint(7, 10)
+                g4e.opp.y = -25
+
+    for g4e.wall in g4e.wall_bottom:
+        for g4e.opp in g4e.oppingame_bottom:
+            if g4e.wall.x == g4e.opp.x and g4e.wall.y == g4e.opp.y:
+                g4e.oppingame_bottom.remove(g4e.opp)
+                g4e.opp.x = random.randint(7, 10)
+                g4e.opp.y = 25
+
     g4e.draw_map(screen)
     pygame.display.flip()
