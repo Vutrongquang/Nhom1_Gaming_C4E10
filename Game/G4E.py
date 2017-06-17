@@ -16,8 +16,13 @@ class G4E:
         if len(self.creeps) != 0:
             for self.creep in self.creeps:
                 self.draw_image_center(self.creep, screen)
-        if len(self.shooted) != 0:
-            for self.shoted in self.shooted:
+        if len(self.shooted_left) != 0:
+            for self.shoted in self.shooted_left:
+                self.shoted.image = pygame.image.load("images/shoot_left.png")
+                self.draw_image_center(self.shoted, screen)
+        if len(self.shooted_right) != 0:
+            for self.shoted in self.shooted_right:
+                self.shoted.image = pygame.image.load("images/shoot.png")
                 self.draw_image_center(self.shoted, screen)
 
 
@@ -26,7 +31,7 @@ class G4E:
         h = (pixel - object.image.get_height())/2 + object.y*64
         screen.blit(object.image, (w, h))
 
-    def in_map(self,dx ,dy):
+    def in_map(self, dx, dy):
         if 1 <= self.character.x + dx < self.map.width and 0 <= self.character.y + dy < self.map.height:
             return True
         return False
@@ -36,10 +41,12 @@ class G4E:
         dy = 0
         if event.key == pygame.K_RIGHT:
             dx = 1
-
+            self.a = 1
+            self.character.image = pygame.image.load("images/character.png")
         elif event.key == pygame.K_LEFT:
             dx = -1
-
+            self.a = -1
+            self.character.image = pygame.image.load("images/character_left.png")
         elif event.key == pygame.K_DOWN:
             dy = 1
 

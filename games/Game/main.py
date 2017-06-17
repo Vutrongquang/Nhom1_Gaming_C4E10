@@ -7,6 +7,7 @@ from Member.Map import Dest
 from Member.Shoot import Shoot
 from Member.Character import Character
 from Member.Creep import Creep
+from Member.CreepDie import CreepDie
 
 # Khoi tao cac doi tuong
 g4e = G4E()
@@ -24,9 +25,10 @@ g4e.shooted = []
 g4e.oldshoot = []
 g4e.shoots = []
 for i in range(50):
-    g4e.shoots.append(Shoot(15,15))
+    g4e.shoots.append(Shoot(15, 15))
 
 g4e.dests = [Dest(0, 0), Dest(0, 1), Dest(0, 2), Dest(0, 3), Dest(0, 4)]
+# g4e.damage_shoot = DamageShoot(50)
 pixel = 64
 
 # Xu li phan hinh anh co ban
@@ -44,15 +46,30 @@ pygame.init()
 screen = pygame.display.set_mode((640,320))
 done = False
 
+g4e.creep_die_animation = [
+    pygame.image.load("images/0.png"),
+    pygame.image.load("images/1.png"),
+    pygame.image.load("images/2.png"),
+    pygame.image.load("images/3.png"),
+    pygame.image.load("images/4.png"),
+    pygame.image.load("images/5.png"),
+    pygame.image.load("images/6.png")
+]
+
+g4e.creep_die = CreepDie(g4e.creep_die_animation, screen)
 
 creep_speed = 0
 creep_max_speed = 0
 shoot_speed = 0
 shoot_max_speed = 25
+counter_img_creep = 0
 
 k = 0
 
 while not done:
+
+    g4e.draw(screen)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -87,21 +104,12 @@ while not done:
     while shoot_speed > shoot_max_speed:
         for g4e.shoot in g4e.shooted:
             g4e.shoot.move(1, 0)
-
             if g4e.shoot.x > g4e.map.width+1:
                 g4e.shoots.append(g4e.shoot)
                 g4e.shooted.remove(g4e.shoot)
         shoot_speed = 0
 
-    for g4e.creep in g4e.creepingame:
-        for g4e.shoot in g4e.shooted:
-            if g4e.shoot.x == g4e.creep.x and g4e.shoot.y == g4e.creep.y:
-                g4e.creep.x = 10
-                g4e.creep.y = random.randint(0,4)
-                g4e.creepingame.remove(g4e.creep)
-                g4e.shoots.append(g4e.shoot)
-                g4e.shooted.remove(g4e.shoot)
-                k += 1
+
 
     for g4e.dest in g4e.dests:
         for g4e.creep in g4e.creepingame:
@@ -116,5 +124,18 @@ while not done:
     if len(g4e.dests) == 0:
         done = True
 
-    g4e.draw(screen)
+    counter_img_creep = 0
+    for g4e.creep in g4e.creepingame:
+        for g4e.shoot in g4e.shooted:
+            if g4e.shoot.x == g4e.creep.x and g4e.shoot.y == g4e.creep.y:
+                counter_img_creep += 1
+                g4e.creep.x = 10
+                g4e.creep.y = random.randint(0,4)
+                g4e.creep_die = CreepDie(g4e.creep_die_animation, screen)
+                g4e.creep_die.draw(g4e.creep.x, g4e.creep.y)
+                g4e.creepingame.remove(g4e.creep)
+                g4e.shoots.append(g4e.shoot)
+                g4e.shooted.remove(g4e.shoot)
+                k += 1
+            counter_img_creep = 0
     pygame.display.flip()
